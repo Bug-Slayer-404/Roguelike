@@ -1,17 +1,20 @@
 # Roguelike
 
-一个使用 **C++20 + Win32 API** 从零开发的 2D Roguelike 游戏项目。  
-A 2D Roguelike game developed from scratch using **C++20 + Win32 API**.
+一个使用 **C++20 + raylib + CMake** 从零开发的 2D Roguelike 游戏项目。
+
+A 2D Roguelike game developed from scratch using **C++20 + raylib + CMake**.
 
 ---
 
 ## 项目简介
 
-`Roguelike` 是一个正在开发中的 2D Roguelike 游戏。
+`Roguelike` 是一个正在从零开发中的 2D Roguelike 游戏项目。
 
-本项目的目标是从最基础的 Windows 窗口开始，逐步实现完整的游戏框架，包括：
+本项目以 **raylib** 作为底层图形与多媒体框架，从基础游戏循环开始，逐步构建一个完整、可长期维护的游戏框架。
 
-- 游戏循环
+项目目标包括：
+
+- 游戏主循环
 - 2D 渲染
 - 玩家控制
 - 敌人系统
@@ -21,31 +24,52 @@ A 2D Roguelike game developed from scratch using **C++20 + Win32 API**.
 - 随机技能与成长
 - 地图与关卡
 - Boss 战
-- 音效与其他游戏系统
+- 音效与背景音乐
+- 游戏存档
+- UI 系统
+- 完整的 Roguelike 游戏流程
 
-项目目前处于早期开发阶段。
+项目目前处于**早期开发阶段**。
+
+---
 
 ## 技术栈
 
 - **C++20**
-- **Win32 API**
+- **raylib 6.0**
 - **CMake**
-- **MinGW / GCC**
+- **MinGW-w64 / GCC 16.2**
 - **Git**
+- **Visual Studio Code**
 
-## 当前进度
+---
 
-- [x] CMake 项目配置
-- [x] C++20 编译环境
-- [x] Win32 窗口创建
-- [x] 基础 Windows 消息循环
-- [ ] 游戏主循环
-- [ ] 2D 渲染
-- [ ] 玩家系统
-- [ ] 敌人系统
-- [ ] 战斗系统
-- [ ] Roguelike 随机成长系统
-- [ ] 地图与关卡
-- [ ] Boss
-- [ ] 音效
-- [ ] 完整游戏
+## 项目结构
+
+```text
+Roguelike/
+├── assets/
+│   └── icon/
+│       ├── icon.ico
+│       └── icon.rc
+│
+├── bin/
+│   └── raylib.dll
+│
+├── build/
+│   └── CMake 构建文件
+│
+├── include/
+│   ├── File.h
+│   ├── Game.h
+│   └── Player.h
+│
+├── src/
+│   ├── File.cpp
+│   ├── Game.cpp
+│   ├── Player.cpp
+│   └── main.cpp
+│
+├── CMakeLists.txt
+├── README.md
+└── .gitignore
