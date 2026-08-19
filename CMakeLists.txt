@@ -6,13 +6,23 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# 输出目录
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+    "${CMAKE_SOURCE_DIR}/bin"
+)
 
-# raylib
-set(RAYLIB_INCLUDE_DIR "C:/raylib-6.0_win64_mingw-w64/include")
+set(RAYLIB_DIR
+    "C:/raylib-6.0_win64_mingw-w64"
+)
 
-add_executable(Roguelike WIN32
+set(RAYLIB_INCLUDE_DIR
+    "${RAYLIB_DIR}/include"
+)
+
+set(RAYLIB_LIB_DIR
+    "${RAYLIB_DIR}/lib"
+)
+
+add_executable(Roguelike
     src/main.cpp
     src/Game.cpp
     src/Player.cpp
@@ -22,7 +32,11 @@ add_executable(Roguelike WIN32
 
 target_include_directories(Roguelike PRIVATE
     include
-    ${RAYLIB_INCLUDE_DIR}
+    "${RAYLIB_INCLUDE_DIR}"
+)
+
+target_link_directories(Roguelike PRIVATE
+    "${RAYLIB_LIB_DIR}"
 )
 
 target_link_libraries(Roguelike PRIVATE
