@@ -26,3 +26,7 @@ void Player::Update() {
     if (0 > y) y = 0;
     if (y > WindowLength - Radius) y = WindowLength - Radius;
 }
+
+double Player::GetX() const { return x; }
+
+double Player::GetY() const { return y; }

@@ -6,7 +6,8 @@
 #include "Player.h"
 
 Game::Game()
-    : player(WindowWidth / 2.0 - Radius, WindowLength / 2.0 - Radius) {}
+    : player(WindowWidth / 2.0 - Radius, WindowLength / 2.0 - Radius),
+      enemy(WindowWidth / 2.0 - Radius, WindowLength / 2.0 - Radius) {}
 
 void Game::Run() {
     InitWindow(WindowWidth, WindowLength, WindowTitle);
@@ -21,13 +22,17 @@ void Game::Run() {
     CloseWindow();
 }
 
-void Game::Update() { player.Update(); }
+void Game::Update() {
+    player.Update();
+    enemy.Update(player.GetX(), player.GetY());
+}
 
 void Game::Draw() {
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
 
+    enemy.Draw();
     player.Draw();
 
     EndDrawing();

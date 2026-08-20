@@ -11,6 +11,8 @@ class Player {
     Player(double x, double y);
     void Update();
     void Draw();
+    double GetX() const;
+    double GetY() const;
 };
 
 #endif

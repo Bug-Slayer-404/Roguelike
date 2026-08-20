@@ -26,6 +26,7 @@ add_executable(Roguelike
     src/main.cpp
     src/Game.cpp
     src/Player.cpp
+    src/Enemy.cpp
     src/File.cpp
     assets/icon/icon.rc
 )
