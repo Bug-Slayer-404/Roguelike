@@ -2,8 +2,9 @@
 
 #include <raylib.h>
 
-#include "Config.h"
 #include <cmath>
+
+#include "Config.h"
 
 Enemy::Enemy(double x, double y) : x(x), y(y) { speed = 2; }
 
