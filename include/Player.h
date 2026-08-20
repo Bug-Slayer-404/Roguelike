@@ -2,12 +2,13 @@
 #define PLAYER_H
 
 class Player {
-   private:
+  private:
     double x;
     double y;
     double speed;
 
-   public:
+  public:
+    Player(double x, double y);
     void Update();
     void Draw();
 };

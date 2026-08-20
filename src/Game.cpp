@@ -1,34 +1,34 @@
 #include "Game.h"
-#include "Player.h"
 
 #include <raylib.h>
 
-#define WindowWidth 1280
-#define Windowlength 720
-#define WindowTitle "Roguelike"
+#include "Config.h"
+#include "Player.h"
+
+Game::Game()
+    : player(WindowWidth / 2.0 - Radius, WindowLength / 2.0 - Radius) {}
 
 void Game::Run() {
-  InitWindow(WindowWidth, Windowlength, WindowTitle);
+    InitWindow(WindowWidth, WindowLength, WindowTitle);
 
-  SetTargetFPS(60);
+    SetTargetFPS(60);
 
-  while (!WindowShouldClose()) {
-    Update();
-    Draw();
-  }
+    while (!WindowShouldClose()) {
+        Update();
+        Draw();
+    }
 
-  CloseWindow();
+    CloseWindow();
 }
 
-void Game::Update() {}
+void Game::Update() { player.Update(); }
 
 void Game::Draw() {
-  BeginDrawing();
+    BeginDrawing();
 
-  ClearBackground(RAYWHITE);
+    ClearBackground(RAYWHITE);
 
-  DrawRectangle(100, 100, 50, 50, RED);
-  DrawText("Success", 40, 40, 40, PINK);
+    player.Draw();
 
-  EndDrawing();
+    EndDrawing();
 }
