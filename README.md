@@ -1,5 +1,7 @@
 # Roguelike
 
+| [English](README-en.md) | **简体中文**|
+
 一个使用 **C++20 + raylib + CMake** 从零开发的 2D Roguelike 游戏项目。
 
 A 2D Roguelike game developed from scratch using **C++20 + raylib + CMake**.
@@ -72,4 +74,5 @@ Roguelike/
 │
 ├── CMakeLists.txt
 ├── README.md
+├── README-en.md
 └── .gitignore

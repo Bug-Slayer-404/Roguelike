@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Player.h"
 
 #include <raylib.h>
 
@@ -7,27 +8,27 @@
 #define WindowTitle "Roguelike"
 
 void Game::Run() {
-    InitWindow(WindowWidth, Windowlength, WindowTitle);
+  InitWindow(WindowWidth, Windowlength, WindowTitle);
 
-    SetTargetFPS(60);
+  SetTargetFPS(60);
 
-    while (!WindowShouldClose()) {
-        Update();
-        Draw();
-    }
+  while (!WindowShouldClose()) {
+    Update();
+    Draw();
+  }
 
-    CloseWindow();
+  CloseWindow();
 }
 
 void Game::Update() {}
 
 void Game::Draw() {
-    BeginDrawing();
+  BeginDrawing();
 
-    ClearBackground(RAYWHITE);
+  ClearBackground(RAYWHITE);
 
-    DrawRectangle(100, 100, 50, 50, RED);
-    DrawText("Success", 40, 40, 40, PINK);
+  DrawRectangle(100, 100, 50, 50, RED);
+  DrawText("Success", 40, 40, 40, PINK);
 
-    EndDrawing();
+  EndDrawing();
 }
