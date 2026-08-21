@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define Radius 100
+#define CharacterSize 120
 
 #define WindowWidth 1280
 #define WindowLength 720
