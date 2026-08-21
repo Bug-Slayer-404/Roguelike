@@ -11,6 +11,7 @@ Enemy::Enemy(double x, double y) : x(x), y(y) { speed = 2; }
 void Enemy::Draw() { DrawRectangle(x, y, Radius, Radius, BLUE); }
 
 void Enemy::Update(double playerX, double playerY) {
+    // move towards the player
     double dx = playerX - x;
     double dy = playerY - y;
     double dist = std::sqrt(dx * dx + dy * dy);
