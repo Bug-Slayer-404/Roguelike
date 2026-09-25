@@ -13,14 +13,17 @@ namespace {
 constexpr int kFrameWidth = 90;
 constexpr int kFrameHeight = 90;
 constexpr int kIdleStart = 0;
-constexpr int kIdleCount = 6;
-constexpr int kRunStart = 6;
-constexpr int kRunCount = 8;
+constexpr int kIdleCount = 4;
+constexpr int kRunStart = 4;
+constexpr int kRunCount = 10;
 constexpr int kAttackStart = 14;
-constexpr int kAttackCount = 7;
-constexpr int kDeadStart = 21;
-constexpr int kDeadCount = 8;
+constexpr int kAttackCount = 8;
+constexpr int kDeadStart = 22;
+constexpr int kDeadCount = 7;
 
+// 这类 sprite sheet 里，通常会有 1 帧透明占位/空白帧,
+// 但它不属于真实动画帧，因此不计入 start/count。
+// 真实分段是：4 idle + 10 run + 8 attack + 7 dead = 29 帧/方向。
 struct Clip {
     int start;
     int count;
@@ -28,6 +31,17 @@ struct Clip {
 
 Clip GetClip(bool moving) {
     return moving ? Clip{kRunStart, kRunCount} : Clip{kIdleStart, kIdleCount};
+}
+
+int GetDirectionOffset(int totalFrames, bool facingRight) {
+    if (facingRight) return 0;
+
+    // 单向图：29 帧，不需要偏移；双向图：一般 58 帧，左右各 29 帧。
+    if (totalFrames > 29 && totalFrames % 2 == 0) {
+        return totalFrames / 2;
+    }
+
+    return 0;
 }
 
 std::filesystem::path FindProjectRoot() {
@@ -119,7 +133,7 @@ void Enemy::Draw() {
     }
 
     const int totalFrames = static_cast<int>(texture.width / kFrameWidth);
-    const int directionOffset = (totalFrames > 29 && !facingRight) ? 29 : 0;
+    const int directionOffset = GetDirectionOffset(totalFrames, facingRight);
     const Clip clip = GetClip(isMoving);
     const int frameIndex = frame % clip.count;
     const int sourceX =
