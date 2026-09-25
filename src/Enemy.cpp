@@ -12,6 +12,8 @@
 namespace {
 constexpr int kFrameWidth = 90;
 constexpr int kFrameHeight = 90;
+constexpr int kMachineFrameStartX = 45;
+constexpr int kMachineCutFrameCount = 58;
 constexpr int kIdleStart = 0;
 constexpr int kIdleCount = 4;
 constexpr int kRunStart = 4;
@@ -31,6 +33,22 @@ struct Clip {
 
 Clip GetClip(bool moving) {
     return moving ? Clip{kRunStart, kRunCount} : Clip{kIdleStart, kIdleCount};
+}
+
+bool IsMachineSheet(int textureWidth) {
+    return textureWidth >= kMachineCutFrameCount * kFrameWidth;
+}
+
+int GetSourceXForFrame(int textureWidth, int frameIndex, const Clip& clip,
+                       bool facingRight) {
+    if (IsMachineSheet(textureWidth)) {
+        const int validIndex = clip.start + frameIndex;
+        return kMachineFrameStartX + (validIndex * 2 + 1) * kFrameWidth;
+    }
+
+    const int totalFrames = textureWidth / kFrameWidth;
+    const int directionOffset = (totalFrames > 29 && !facingRight) ? 29 : 0;
+    return (directionOffset + clip.start + frameIndex) * kFrameWidth;
 }
 
 int GetDirectionOffset(int totalFrames, bool facingRight) {
@@ -132,12 +150,10 @@ void Enemy::Draw() {
         return;
     }
 
-    const int totalFrames = static_cast<int>(texture.width / kFrameWidth);
-    const int directionOffset = (totalFrames > 29 && !facingRight) ? 29 : 0;
     const Clip clip = GetClip(isMoving);
     const int frameIndex = frame % clip.count;
-    const int sourceX =
-        (directionOffset + clip.start + frameIndex) * kFrameWidth;
+    const int sourceX = GetSourceXForFrame(texture.width, frameIndex, clip,
+                                           facingRight);
     const float spriteSize = static_cast<float>(CharacterSize);
     const float drawX = static_cast<float>(x - spriteSize * 0.5f);
     const float drawY = static_cast<float>(y - spriteSize * 0.5f);
