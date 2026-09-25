@@ -133,7 +133,7 @@ void Enemy::Draw() {
     }
 
     const int totalFrames = static_cast<int>(texture.width / kFrameWidth);
-    const int directionOffset = GetDirectionOffset(totalFrames, facingRight);
+    const int directionOffset = (totalFrames > 29 && !facingRight) ? 29 : 0;
     const Clip clip = GetClip(isMoving);
     const int frameIndex = frame % clip.count;
     const int sourceX =
