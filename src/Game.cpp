@@ -34,12 +34,12 @@ void Game::Update() {
     const double dx = player.GetX() - enemy.GetX();
     const double dy = player.GetY() - enemy.GetY();
     const double dist = std::sqrt(dx * dx + dy * dy);
-    const double hitboxSize = CharacterSize * 0.7;
+    const double collisionRadius = CollisionSize * 0.5;
 
-    if (dist < hitboxSize) {
+    if (dist < collisionRadius) {
         const double nx = (dist > 0.0001) ? dx / dist : 1.0;
         const double ny = (dist > 0.0001) ? dy / dist : 0.0;
-        const double overlap = (hitboxSize - dist) * 0.5;
+        const double overlap = (collisionRadius - dist) * 0.5;
 
         player.SetPosition(player.GetX() + nx * overlap,
                            player.GetY() + ny * overlap);
